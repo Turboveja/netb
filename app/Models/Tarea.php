@@ -15,10 +15,10 @@ class Tarea extends Model
     use HasFactory;
     use SoftDeletes;
 
+    //Dejamos abierta la mass asignement
     protected $guarded = [];
 
     //Relations
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -28,7 +28,6 @@ class Tarea extends Model
     }
 
     //Methods
-
     /**
      * Obtener el nombre de las categorias
      *
@@ -40,6 +39,24 @@ class Tarea extends Model
         return $array_categorias;
     }
 
+    /**
+     * Para devolver en AJAX al gestionar el elemento
+     *
+     * @return array
+     */
+    public function formatJson()
+    {
+        $array_json = [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'categorias' => $this->getNombresCategorias(),
+            'fecha_creacion' => $this->created_at->toDateTimeString(),
+        ];
+
+        return $array_json;
+    }
+
+    //Scopes
     /**
      * @param $query
      * @param null $busqueda
@@ -63,22 +80,5 @@ class Tarea extends Model
                 $f->whereIn('categorias.id', $categorias);
             });
         }
-    }
-
-    /**
-     * Para devolver en AJAX al gestionar el elemento
-     *
-     * @return array
-     */
-    public function formatJson()
-    {
-        $array_json = [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
-            'categorias' => $this->getNombresCategorias(),
-            'fecha_creacion' => $this->created_at->toDateTimeString(),
-        ];
-
-        return $array_json;
     }
 }
