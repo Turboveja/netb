@@ -14,7 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd(\Illuminate\Support\Facades\Schema::hasTable('NuevaTablas'));
-    dd('funciona');
     return view('welcome');
 });
