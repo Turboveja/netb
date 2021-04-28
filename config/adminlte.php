@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>NETBERRY</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>' . env('APP_NAME', 'PROJECT X'). '</b>',
+    'logo_img' => env('APP_LOGO', 'vendor/adminlte/dist/img/AdminLTELogo.png'),
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -242,11 +242,11 @@ return [
 //            'label_color' => 'success',
         ],
 //        ['header' => 'account_settings'],
-        [
-            'text' => 'Categorias',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+//        [
+//            'text' => 'Categorias',
+//            'url'  => 'admin/settings',
+//            'icon' => 'fas fa-fw fa-user',
+//        ],
 //        [
 //            'text' => 'change_password',
 //            'url'  => 'admin/settings',
